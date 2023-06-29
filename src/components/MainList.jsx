@@ -13,6 +13,8 @@ const categotyList = [
     {id:6, title:"제주 전기차 충전소 찾기" , category:"evCharging", isOn:false},
     {id:7, title:"제주 전기차 뉴스" , category:"evNews", isOn:false},
 ]
+
+
 const MainList = ({setIsOnOff}) => {
     const {stateList: dataList, state : data, setState: setData, loading, error} = useAxios(`https://gist.githubusercontent.com/HajinKimm/8b219f293cb8bd72dff08399ab86cf75/raw/30b7eae5b0867d1057318cb131fd6574fee7d3e0/Tamra.json`)
     const [searchBtn, setSearchBtn] = useState(false)
@@ -51,16 +53,7 @@ const MainList = ({setIsOnOff}) => {
     const onAddPosts=()=>{
         setCurrentPosts(currentPosts+6)
     }
-    //MainDetail 좋아요
-    const [clickLike,setClickLike] = useState(false)
 
-    const onlike=(id)=>{
-        setData(data.map(item=>item.id===id?{...item, like:item.like+1}:item))
-        set
-    }
-    useEffect(()=>{
-
-    },[data])
     return (
         <Content>
             
@@ -80,7 +73,7 @@ const MainList = ({setIsOnOff}) => {
                 </div>
                 <button className='btnSearch' type='submit'></button>
             </form>
-            <MainItem data={filterPosts} onlike={onlike}/>
+            <MainItem filterPosts={filterPosts} data={data} setData={setData}/>
             <p className='plusBtnWrap'>
             <button onClick={onAddPosts} className='plusBtn'><i className='xi-plus'></i><span>더보기</span></button>
 

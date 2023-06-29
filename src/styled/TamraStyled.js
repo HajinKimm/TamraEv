@@ -375,6 +375,7 @@ export const PopupWrap = styled.div`
                 background: transparent;
                 i{
                     font-size: 30px;
+                    
                 }
             }
             h2{
@@ -395,6 +396,16 @@ export const PopupWrap = styled.div`
                     font-size: 30px;
                     vertical-align: middle;
                     color: red;
+                    position: relative;
+                    &.xi-heart{
+                        &::after{
+                            content: "+1";
+                            display: block;
+                            font-size: 15px;
+                            position: absolute;
+                            top: -10px; right: -10px;
+                        }
+                    }
                 }
                 span{
                     padding-left: 15px;

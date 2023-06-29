@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import GlobalStyle from './styled/Global';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Ev from './pages/Ev';
@@ -19,7 +19,7 @@ const App = () => {
     <>
       <GlobalStyle/>
 
-      <BrowserRouter>
+      <HashRouter>
         <Header isOnOff={isOnOff} setIsOnOff={setIsOnOff}/>
 
         <Routes>
@@ -36,7 +36,7 @@ const App = () => {
         </Routes>
 
         <Footer   setIsOnOff={setIsOnOff}/>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 };

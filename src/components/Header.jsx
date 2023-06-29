@@ -19,7 +19,7 @@ const Header = ({isOnOff, setIsOnOff}) => {
             <div className="header">
                 <div className="inner">
                     <h1 onClick={()=>{navigate('/') , setIsOnOff(true)}}><img src={`${isOnOff?"./images/logo.png":"./images/logo_b.png"}`} alt="탐라는 전기차" /></h1>
-                    <p className='allMenu' onClick={() =>{setNavBar(true),setIsOnOff(true)}}><i className='xi-bars' style={{color:`${isOnOff?'#fff':'#000'}`}}></i></p>
+                    <p className='allMenu' onClick={() =>{setNavBar(true)}}><i className='xi-bars' style={{color:`${isOnOff?'#fff':'#000'}`}}></i></p>
                 </div>
                 <div className="navBarWrap">
                     <div className={`${navBar ? 'bg' : ''}`} onClick={() =>{setNavBar(false)}}></div>
