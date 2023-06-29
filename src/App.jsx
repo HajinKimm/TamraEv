@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import GlobalStyle from './styled/Global';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
@@ -14,15 +14,16 @@ import NewsDetail from './pages/NewsDetail';
 import NewsLayout from './pages/NewsLayout';
 
 const App = () => {
+  const [isOnOff, setIsOnOff] = useState(true)
   return (
     <>
       <GlobalStyle/>
 
       <BrowserRouter>
-        <Header/>
+        <Header isOnOff={isOnOff} setIsOnOff={setIsOnOff}/>
 
         <Routes>
-            <Route path='/' element={<Home/>}/>
+            <Route path='/' element={<Home setIsOnOff={setIsOnOff}/>}/>
             <Route path='/ev' element={<Ev/>}/>
             <Route path='/evchaging' element={<Evcharging/>}/>
             <Route path='/news' element={<NewsLayout/>}>
@@ -34,7 +35,7 @@ const App = () => {
             <Route path='*' element={<NotFound/>}/>
         </Routes>
 
-        <Footer/>
+        <Footer   setIsOnOff={setIsOnOff}/>
       </BrowserRouter>
     </>
   );

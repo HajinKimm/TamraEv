@@ -1,7 +1,7 @@
 import { keyframes, styled } from "styled-components";
-const mainColor="#007fa8"
-const subColor='#e1d6b9'
-
+const mainColor = "#007fa8"
+const subColor = '#e1d6b9'
+const pageBgColor = '#f5f3f2'
 const inner = {
     width: '1200px',
     margin: "auto",
@@ -15,18 +15,19 @@ export const HeaderContainer = styled.div`
             ${inner}
             h1{
                 cursor: pointer;
-                z-index: 1;
+                z-index: 10;
                 position: absolute;
                 top: 30px;
                 left: 0px;
             }   
-            p{
-                z-index: 1;
+            .allMenu{
+                z-index: 10;
                 position: absolute;
                 top: 30px;
                 right: 0px;
                 i{
                     font-size: 35px;
+                    cursor: pointer;
                 }
             }
         }
@@ -58,6 +59,7 @@ export const HeaderContainer = styled.div`
                     width: 50%;
                     img{
                         width: 100%;
+                        height: 100%;
                     }
                 }
                 .navRightWrap{
@@ -67,6 +69,7 @@ export const HeaderContainer = styled.div`
                         margin: 30px 0px 0px 560px;
                         i{
                             font-size: 35px;
+                            cursor: pointer;
                         }
                     }
                     .gnb{
@@ -112,26 +115,43 @@ export const Main = styled.div`
             font-weight: 700;
         }
     }
-`
-
-export const MainVisual = styled.div`
-    position: relative;
-    overflow: hidden;
-    img{
-        transform: scale(1.2);
-    }
-    .text{
-        position: absolute;
-        top: 170px;
-        left: 360px;
-        color: #fff;
-        h2{
-            font-size: 52px;
-            font-weight: 700;
-            margin-bottom: 10px;
+    .visualWrap{
+        max-width: 1920px;
+        margin: auto;
+        .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after, .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+            color: #fff;
         }
-        p{
-            font-size: 22px;
+         .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+            transform: translateX(-30px);
+        }
+        .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {        
+            transform: translateX(30px);
+        }
+        .swiper-slide, .swiper-slide-active{
+            //이미지
+            /* z-index: 0; */
+        }
+        .swiper-pagination-progressbar .swiper-pagination-progressbar-fill{
+            color: #fff;
+            background: #fff;
+            width: 500px;
+            margin: auto;
+        }
+        // Visual
+        .text{
+            position: absolute;
+            top: 170px;
+            left: 360px;
+            color: #fff;
+            z-index: 10;
+            h2{
+                font-size: 52px;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+            p{
+                font-size: 22px;
+            }
         }
     }
     .arrow{
@@ -162,6 +182,7 @@ export const MainVisual = styled.div`
     }
 `
 
+
 export const Content = styled.div`
     .categoryMenu{
         border-top: 1px solid #ccc;
@@ -178,7 +199,7 @@ export const Content = styled.div`
                 padding: 10px 0px;
                 line-height: 40px;
                 cursor: pointer;
-                &.on{
+                &:hover , &.on{
                     border-bottom: 3px solid ${mainColor};
                 }
             }
@@ -314,10 +335,30 @@ export const PopupWrap = styled.div`
             height: 100%;
             box-sizing: border-box;
             img{
-                /* margin: auto; */
+                margin-left: 70px;
+                margin-top: 70px;
                 width: 580px;
-                
             }
+            .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after  {
+                color:  ${subColor};
+                transform: translateX(-10px);
+            }
+            .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
+                transform: translateX(10px);
+                
+                color:  ${subColor};
+            }
+            .swiper-pagination{
+                transform: translateY(-20px) scale(1.5);
+
+            }
+            .swiper-pagination-bullet-active{
+                background: ${subColor};
+            }
+            .swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled{
+                display: none;
+            }
+
         }
         .content_area{
             background: ${subColor};
@@ -338,7 +379,8 @@ export const PopupWrap = styled.div`
             }
             h2{
                 color: ${mainColor};
-                font-size: 21px;
+                font-size: 22px;
+                font-weight: 500;
             }
             h3{
                 font-size: 40px;
@@ -352,13 +394,14 @@ export const PopupWrap = styled.div`
                 i{
                     font-size: 30px;
                     vertical-align: middle;
+                    color: red;
                 }
                 span{
                     padding-left: 15px;
                 }
             }
             .tags{
-                margin-bottom: 20px;
+                margin-bottom: 30px;
                 span{
                     display: inline-block;
                     margin-right: 20px;
@@ -366,12 +409,15 @@ export const PopupWrap = styled.div`
 
             }
             .share{
-                border-top: 1px solid #ccc;
-                padding-top: 20px;
+                border-top: 1px solid #999;
+                padding-top: 30px;
                 display: flex;
                 justify-content:space-between;
-                .text{
+                .shartext{
                     margin-top: 15px;
+                    i{
+                        margin-right: 10px;
+                    }
                 }
                 .img{
                     img{
@@ -513,12 +559,15 @@ export const NewsWrap = styled.div`
         }
     }
     .paging{
+        text-align: center;
+        margin-bottom: 70px;
         a{
             line-height: 1.3;
         }
 
         
         i, a{
+            text-align:center;
             vertical-align: middle;
             cursor: pointer;
             border: 1px solid #ccc;
@@ -548,14 +597,59 @@ export const NewsDetailWrap = styled.div`
         border-bottom: 1px solid #ccc;
         margin-bottom: 50px;
     }
-    img{
-        width: 1100px;
+    .newsDetailImg{
+        width: 100%;
+        /* height: 1050px; */
+        img{
+            width: 1100px;
+            margin-left: 50px;
+            padding-bottom: 70px;
+        }
+        .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{
+            display: flex;
+            justify-content: center;
+        }
+        .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after, .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+            color: ${mainColor};
+            font-size: 50px;
+        }
+        .swiper-pagination{
+            transform: scaleX(2.3) scaleY(0.5) translateY(10px);
+        }
+        .swiper-pagination-bullet-active{
+            background: ${mainColor};
+        }
+        .swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled{
+            display: none;
+        }
+
     }
     p{
-        margin: 50px 0px;
+        padding: 70px 0px;
+        border-bottom: 2px solid #999;
+        font-size: 18px;
     }
-    button{
-        
+    .btnwrap{
+        margin-top: 80px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 100px;
+        button{
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            background: transparent;
+            &:nth-child(2){
+                background: ${mainColor};
+                color: #fff;
+                padding: 15px 30px;
+                font-size: 22px;
+                transform: translateY(10px);
+            }
+        }
+
     }
 }
 `
@@ -584,7 +678,119 @@ export const NotFoundWrap = styled.div`
                 font-size: 18px;
                 padding: 10px 30px;
                 margin-top: 50px;
+                
             }
+        }
+    }
+`
+
+export const TermsWrap = styled.div`
+    ${inner}
+    padding:130px 0px;
+    h2{
+        text-align: center;
+        color: #000;
+    font-size: 40px;
+    margin-bottom: 50px;
+    font-weight: 500;
+    }
+    div{
+        background: ${pageBgColor};
+        padding: 60px;
+        margin-bottom: 30px;
+        h3{
+        font-size: 30px;
+        font-weight: 500;
+        
+        }
+        strong{
+            font-weight: 500;
+            display: block;
+            margin: 20px 0px;
+            font-size: 20px;
+            }
+        p{
+            color: #666;
+            font-size: 18px;
+            line-height: 30px;
+            text-indent: -24px;
+            padding-left: 24px;
+        }
+        .indent{
+            text-indent: 0px;
+        }
+    }
+`
+export const UserInfoWrap = styled.div`
+   ${inner}
+    padding:130px 0px;
+    h2{
+        text-align: center;
+        color: #000;
+    font-size: 40px;
+    margin-bottom: 50px;
+    font-weight: 500;
+    }
+    div{
+        background: ${pageBgColor};
+        padding: 60px;
+        margin-bottom: 30px;
+        strong{
+            display: block;
+            margin: 20px 0px;
+            font-size: 20px;
+            font-weight: 700;
+            }
+        p{
+            color: #666;
+            font-size: 18px;
+            line-height: 30px;
+            text-indent: -24px;
+            padding-left: 24px;
+        }
+        .indent{
+            text-indent: 0px;
+        }
+        table{
+            margin: 5px 0px 5px 24px;
+            width: 98%;
+            .w1{width:18%}
+            .w2{width:auto}
+            .w3{width:22%}
+            .w4{width:22%}
+            .w5{width:20%}
+            .w6{width:20%}
+            .w7{width:auto}
+            .w8{width:50%}
+            .w9{width:50%}
+            tr{
+                th,td{
+                    border: 1px solid #666;
+                    padding: 10px 10px;
+                    color: #666;
+                }
+                th{font-weight:600;}
+                td{
+                    p{font-size:15px;}
+                }
+            }
+        }
+    }
+
+`
+
+export const EvchargingWrap = styled.div`
+    .inner{
+        ${inner}
+            padding-top:100px;
+            padding-bottom: 200px;
+        h2{
+            border-top: 2px solid #999;
+            margin: 20px 0px 40px;
+            text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            padding: 30px ;
         }
     }
 `

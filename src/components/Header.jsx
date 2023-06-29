@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { HeaderContainer } from '../styled/TamraStyled';
+import MenuSwiper from './MenuSwiper';
 
 
 const navList = [
@@ -10,32 +11,26 @@ const navList = [
     { id: 4, path: "news", title: "JEJU 전기차 관련 소식" },
 ]
 
-const Header = () => {
+const Header = ({isOnOff, setIsOnOff}) => {
     const [navBar, setNavBar] = useState(false)
-    const [currentPath, setCurrentPath] = useState(1)
     const navigate = useNavigate()
-    const onToggle = (nav, id) => {
-        setNavBar(nav)
-        setCurrentPath(navList.find(item=>item.id===id).id)
-    }
     return (
         <HeaderContainer>
             <div className="header">
                 <div className="inner">
-                    {/* <h1 onClick={()=>{navigate('/') , setCurrentPath(1)}}><img src={`${currentPath===1?"./images/logo.png":"./images/logo_b.png"}`} alt="탐라는 전기차" /></h1> */}
-                    <h1 onClick={()=>{navigate('/') , setCurrentPath(1)}}><img src={`${currentPath===1?"./images/logo_b.png":"./images/logo_b.png"}`} alt="탐라는 전기차" /></h1>
-                    <p className='allMenu' onClick={() => onToggle(true,1)}><i className='xi-bars' style={{color:`${currentPath===1?'#000':'#000'}`}}></i></p>
+                    <h1 onClick={()=>{navigate('/') , setIsOnOff(true)}}><img src={`${isOnOff?"./images/logo.png":"./images/logo_b.png"}`} alt="탐라는 전기차" /></h1>
+                    <p className='allMenu' onClick={() =>{setNavBar(true),setIsOnOff(true)}}><i className='xi-bars' style={{color:`${isOnOff?'#fff':'#000'}`}}></i></p>
                 </div>
                 <div className="navBarWrap">
-                    <div className={`${navBar ? 'bg' : ''}`} onClick={() => onToggle(false,1)}></div>
+                    <div className={`${navBar ? 'bg' : ''}`} onClick={() =>{setNavBar(false)}}></div>
                     <nav className={navBar ? 'on' : ''}>
                         <div className='navLeftWrap'>
-                            <img src="./images/gnb_slider_1.jpg" alt="전기차" />
+                            <MenuSwiper/>
                         </div>
                         <div className="navRightWrap">
-                            <span onClick={() => onToggle(false,1)}><i className='xi-close'></i></span>
+                            <span onClick={() =>{setNavBar(false)}}><i className='xi-close'></i></span>
                             <ul className="gnb">
-                                {navList.map(item => <li key={item.id}><Link to={`/${item.path}`} onClick={() => onToggle(false,item.id)}>{item.title}</Link></li>)}
+                                {navList.map(item => <li key={item.id}><Link to={`/${item.path}`} onClick={() =>{setNavBar(false), item.title === "HOME"?setIsOnOff(true):setIsOnOff(false)}}>{item.title}</Link></li>)}
                             </ul>
                         </div>
                     </nav>

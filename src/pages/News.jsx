@@ -61,11 +61,10 @@ const News = () => {
                 </table>
                 <p className='paging'>
                 <i onClick={onPrevPage} ><AiOutlineLeft/></i>
-                    {pageNum.map(item=><a href='#' onClick={()=>setCurrenPage(item)} key={item} style={item===currentPage?{color:"#fff", background:"pink",border:'none'}:{}}>{item}</a>)}
+                    {pageNum.map(item=><a href='#' onClick={()=>setCurrenPage(item)} key={item} style={item===currentPage?{color:"#fff", background:"#007fa8",border:'none'}:{}}>{item}</a>)}
                     <i onClick={onNextPage}><AiOutlineRight/></i>
                 </p>
             </div>
-            {/* <NewsDetail/> */}
         </NewsWrap>
     );
 };

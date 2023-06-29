@@ -13,16 +13,13 @@ const categotyList = [
     {id:6, title:"제주 전기차 충전소 찾기" , category:"evCharging", isOn:false},
     {id:7, title:"제주 전기차 뉴스" , category:"evNews", isOn:false},
 ]
-const MainList = () => {
-    const {stateList: dataList, state : data, setState: setData, loading, error} = useAxios(`https://gist.githubusercontent.com/HajinKimm/8b219f293cb8bd72dff08399ab86cf75/raw/257feb95c7d0dba6373efe72a6e62d09e7943af5/Tamra.json`)
-    // const [searchData, setSearchData] = useState(data)
-    
+const MainList = ({setIsOnOff}) => {
+    const {stateList: dataList, state : data, setState: setData, loading, error} = useAxios(`https://gist.githubusercontent.com/HajinKimm/8b219f293cb8bd72dff08399ab86cf75/raw/30b7eae5b0867d1057318cb131fd6574fee7d3e0/Tamra.json`)
     const [searchBtn, setSearchBtn] = useState(false)
     const [text,setText] = useState('')
     const [currentCategory, setCurrentCategory] = useState(categotyList)
     const [currentPosts, setCurrentPosts] = useState(6)
     const filterPosts = data.slice(0, currentPosts)
-    // console.log(data.slice(0, currentPosts).map(itme=>(...item, item.isLikes:false)))
     const navigate = useNavigate()
     //검색함수
     const onsubmit =useCallback((e)=>{
@@ -40,6 +37,10 @@ const MainList = () => {
             setCurrentCategory(currentCategory.map(item=>item.title===title?{...item, isOn:true}:{...item, isOn:false}))
         }else if(title==="제주 전기차 뉴스"){
             navigate('/news')
+            setIsOnOff(false)
+        }else if(title==="제주 전기차 충전소 찾기"){
+            navigate('/evchaging')
+            setIsOnOff(false)
         }else{
             setData(dataList.filter(item=>item.category===title))
             setCurrentCategory(currentCategory.map(item=>item.title===title?{...item, isOn:true}:{...item, isOn:false}))
@@ -50,13 +51,23 @@ const MainList = () => {
     const onAddPosts=()=>{
         setCurrentPosts(currentPosts+6)
     }
+    //MainDetail 좋아요
+    const [clickLike,setClickLike] = useState(false)
 
+    const onlike=(id)=>{
+        setData(data.map(item=>item.id===id?{...item, like:item.like+1}:item))
+        set
+    }
+    useEffect(()=>{
+
+    },[data])
     return (
         <Content>
+            
             <div className="categoryMenu">
                 <ul>
                     {
-                        currentCategory.map(item=><li key={item.id} className={item.isOn?'on':''} onClick={()=>onCategoty(item.title)}>{item.title}</li>)
+                        currentCategory.map(item=><li key={item.id} className={item.isOn?'on':''} onClick={()=>onCategoty(item.title)}   >{item.title}</li>)
                     }
                 </ul>
                 <span className='slideBar'></span>
@@ -69,7 +80,7 @@ const MainList = () => {
                 </div>
                 <button className='btnSearch' type='submit'></button>
             </form>
-            <MainItem data={filterPosts}/>
+            <MainItem data={filterPosts} onlike={onlike}/>
             <p className='plusBtnWrap'>
             <button onClick={onAddPosts} className='plusBtn'><i className='xi-plus'></i><span>더보기</span></button>
 
