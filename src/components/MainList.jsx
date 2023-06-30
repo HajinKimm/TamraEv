@@ -39,10 +39,10 @@ const MainList = ({setIsOnOff}) => {
             setCurrentCategory(currentCategory.map(item=>item.title===title?{...item, isOn:true}:{...item, isOn:false}))
         }else if(title==="제주 전기차 뉴스"){
             navigate('/news')
-            setIsOnOff(false)
+            setIsOnOff(2)
         }else if(title==="제주 전기차 충전소 찾기"){
             navigate('/evchaging')
-            setIsOnOff(false)
+            setIsOnOff(2)
         }else{
             setData(dataList.filter(item=>item.category===title))
             setCurrentCategory(currentCategory.map(item=>item.title===title?{...item, isOn:true}:{...item, isOn:false}))

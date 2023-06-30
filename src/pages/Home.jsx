@@ -4,6 +4,8 @@ import Visual from '../components/Visual';
 import MainList from '../components/MainList';
 
 const Home = ({ setIsOnOff}) => {
+    setIsOnOff(1)
+
     return (
         <Main >
             <Visual/>

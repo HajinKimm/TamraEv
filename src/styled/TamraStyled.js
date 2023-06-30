@@ -8,7 +8,22 @@ const inner = {
     position: 'relative',
     boxSizing: 'border-box'
 }
-
+const scaleChange = keyframes`
+    0%{
+        scale: 1.1;
+        opacity: 1;
+    }
+    50%{
+        opacity: 1;
+    }
+    51%{
+        opacity: 0;
+    }
+    100%{
+        scale:1;
+        opacity: 0;
+    }
+`
 export const HeaderContainer = styled.div`
     .header{
         .inner{
@@ -57,9 +72,28 @@ export const HeaderContainer = styled.div`
                 
                 .navLeftWrap{
                     width: 50%;
-                    img{
-                        width: 100%;
-                        height: 100%;
+                    .menuScaleChange{
+                        ul{
+                            position: relative;
+                            overflow: hidden;
+                            height: 700px;
+                            li{
+                                position: absolute;
+                                img{
+
+                                }
+                                animation: ${scaleChange} 18s infinite ease ;
+                                opacity: 0;
+                                transform: scale(1.1);
+                                &:nth-child(1){animation-delay:0}
+                                &:nth-child(2){animation-delay:3s}
+                                &:nth-child(3){animation-delay:6s}
+                                &:nth-child(4){animation-delay:9s}
+                                &:nth-child(5){animation-delay:12s}
+                                &:nth-child(6){animation-delay:15s}
+                            }
+                        }
+
                     }
                 }
                 .navRightWrap{
@@ -118,26 +152,39 @@ export const Main = styled.div`
     .visualWrap{
         max-width: 1920px;
         margin: auto;
-        .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after, .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
-            color: #fff;
+        /* .swiper-slide, .swiper-slide-active{ */
+        
+        position: relative;
+        .visualImg{
+            height: 540px;
+            
+            li{
+                height: 540px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                img{
+
+                    animation: ${scaleChange} 9s ease-in-out infinite;
+                    transform: scale(1.1);
+                    opacity: 0;
+                }
+                &:nth-child(1) img{
+                    animation-delay: 0s;
+                }
+                    
+                &:nth-child(2) img{
+                    animation-delay: 3s;
+                }
+                    
+                &:nth-child(3) img{
+                    animation-delay: 6s;
+                }
+            }
         }
-         .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
-            transform: translateX(-30px);
-        }
-        .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {        
-            transform: translateX(30px);
-        }
-        .swiper-slide, .swiper-slide-active{
-            //이미지
-            /* z-index: 0; */
-        }
-        .swiper-pagination-progressbar .swiper-pagination-progressbar-fill{
-            color: #fff;
-            background: #fff;
-            width: 500px;
-            margin: auto;
-        }
-        // Visual
+
         .text{
             position: absolute;
             top: 170px;
@@ -158,7 +205,7 @@ export const Main = styled.div`
         z-index: 50;
         position: absolute;
         left: 50%;
-        bottom: 0;
+        top: 520px;
         width: 32px;
         height: 20px;
         margin-left: -16px;
@@ -610,7 +657,6 @@ export const NewsDetailWrap = styled.div`
     }
     .newsDetailImg{
         width: 100%;
-        /* height: 1050px; */
         img{
             width: 1100px;
             margin-left: 50px;

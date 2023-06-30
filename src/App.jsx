@@ -14,7 +14,7 @@ import NewsDetail from './pages/NewsDetail';
 import NewsLayout from './pages/NewsLayout';
 
 const App = () => {
-  const [isOnOff, setIsOnOff] = useState(true)
+  const [isOnOff, setIsOnOff] = useState(null)
   return (
     <>
       <GlobalStyle/>

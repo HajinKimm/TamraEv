@@ -18,8 +18,8 @@ const Header = ({isOnOff, setIsOnOff}) => {
         <HeaderContainer>
             <div className="header">
                 <div className="inner">
-                    <h1 onClick={()=>{navigate('/') , setIsOnOff(true)}}><img src={`${isOnOff?"./images/logo.png":"./images/logo_b.png"}`} alt="탐라는 전기차" /></h1>
-                    <p className='allMenu' onClick={() =>{setNavBar(true)}}><i className='xi-bars' style={{color:`${isOnOff?'#fff':'#000'}`}}></i></p>
+                    <h1 onClick={()=>{navigate('/') , setIsOnOff(1)}}><img src={`${isOnOff===1?"./images/logo.png":"./images/logo_b.png"}`} alt="탐라는 전기차" /></h1>
+                    <p className='allMenu' onClick={() =>{setNavBar(true)}}><i className='xi-bars' style={{color:`${isOnOff===1?'#fff':'#000'}`}}></i></p>
                 </div>
                 <div className="navBarWrap">
                     <div className={`${navBar ? 'bg' : ''}`} onClick={() =>{setNavBar(false)}}></div>
@@ -30,7 +30,7 @@ const Header = ({isOnOff, setIsOnOff}) => {
                         <div className="navRightWrap">
                             <span onClick={() =>{setNavBar(false)}}><i className='xi-close'></i></span>
                             <ul className="gnb">
-                                {navList.map(item => <li key={item.id}><Link to={`/${item.path}`} onClick={() =>{setNavBar(false), item.title === "HOME"?setIsOnOff(true):setIsOnOff(false)}}>{item.title}</Link></li>)}
+                                {navList.map(item => <li key={item.id}><Link to={`/${item.path}`} onClick={() =>{setNavBar(false), item.title === "HOME"?setIsOnOff(1):setIsOnOff(2)}}>{item.title}</Link></li>)}
                             </ul>
                         </div>
                     </nav>
