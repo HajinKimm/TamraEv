@@ -252,10 +252,6 @@ export const Content = styled.div`
             }
         }
         
-        
-        span{
-        /* border-bottom: 3px solid ${mainColor}; */
-        }
         button{
             border-radius: 30px;
             background: ${subColor};
@@ -339,7 +335,6 @@ export const Posts = styled.div`
         margin-top: 40px;
         display: flex;
         flex-wrap: wrap; 
-        /* justify-content: space-between; */
         div{
             margin-right: 30px;
             margin-bottom: 20px;
@@ -702,7 +697,7 @@ export const NewsDetailWrap = styled.div`
                 background: ${mainColor};
                 color: #fff;
                 padding: 15px 30px;
-                font-size: 22px;
+                font-size: 20px;
                 transform: translateY(10px);
             }
         }
@@ -839,15 +834,32 @@ export const UserInfoWrap = styled.div`
 export const EvchargingWrap = styled.div`
     .inner{
         ${inner}
-            padding-top:100px;
-            padding-bottom: 200px;
+            padding-top:120px;
+            padding-bottom: 100px;
         h2{
             border-top: 2px solid #999;
-            margin: 20px 0px 40px;
             text-align: center;
             font-size: 42px;
             font-weight: 700;
             padding: 30px ;
+            border-bottom: 1px solid #999;
+        }
+        div{
+            margin: 70px 0px;
+        }
+        p{
+            text-align: center;
+            border-top: 2px solid #999;
+            button{
+                cursor: pointer;
+                border: none;
+                background: ${mainColor};
+                color: #fff;
+                padding: 15px 30px;
+                font-weight: 700;
+                font-size: 20px;
+                margin-top: 50px;
+            }
         }
     }
 `

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Main } from '../styled/TamraStyled';
 import Visual from '../components/Visual';
 import MainList from '../components/MainList';
 
 const Home = ({ setIsOnOff}) => {
-    setIsOnOff(1)
+    useEffect(()=>{
+        setIsOnOff(1)
+
+    },[])
 
     return (
         <Main >

@@ -19,7 +19,7 @@ const App = () => {
     <>
       <GlobalStyle/>
 
-      <HashRouter>
+      <BrowserRouter>
         <Header isOnOff={isOnOff} setIsOnOff={setIsOnOff}/>
 
         <Routes>
@@ -36,7 +36,7 @@ const App = () => {
         </Routes>
 
         <Footer   setIsOnOff={setIsOnOff}/>
-      </HashRouter>
+      </BrowserRouter>
     </>
   );
 };
